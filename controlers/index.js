@@ -18,11 +18,11 @@ exports.handleStatics = (req, res) => {
 
 exports.handleResponses = (req, res) => {
     
-    fs.writeFile("./responses.txt", res.body, function(err) {
+    fs.writeFile("./responses.txt", 'received data', function(err) {
         if(err) {
             return console.log(err);
         }
-        console.log("The file was saved!");
+        console.log(req.body);
     }); 
     console.log("PAYMENT CALLBACKS", req.params.pag, req.body);
     res.writeHead(200, { 'Content-Type': 'text/html' });
