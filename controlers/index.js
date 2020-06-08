@@ -3,7 +3,7 @@ const fs = require('fs');
 
 exports.handleStatics = (req, res) => {
 
-    fs.writeFile("./statics.txt", req.rawHeaders, function(err) {
+    fs.writeFile("./statics.txt", JSON.stringify(req.rawHeaders), function(err) {
         if(err) {
             return console.log(err);
         }
@@ -17,7 +17,8 @@ exports.handleStatics = (req, res) => {
 };
 
 exports.handleResponses = (req, res) => {
-    fs.writeFile("./responses.txt", JSON.stringify(req.body), function(err) {
+    const joined = JSON.stringify(req.body + '---' req.params.pag);
+    fs.writeFile("./responses.txt", JSON.stringify(joined), function(err) {
         if(err) {
             return console.log(err);
         }
