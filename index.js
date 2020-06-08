@@ -1,8 +1,13 @@
 var express = require('express');
 var app = express();
-let http = require('http');
-let fs = require('fs');
- 
+const fixedRoutes = require('./routes/fixed');
+const movingRoutes = require('./routes/moving');
+const { handleStatics, handleResponses } = require('./controlers');
+const fs = require('fs');
+const bodyParser = require('body-parser'); 
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
 let handleRequest = (req, res) => {
     res.writeHead(200, {
         'Content-Type': 'text/html'
@@ -18,7 +23,9 @@ let handleRequest = (req, res) => {
     });
 };
   
-app.get('/', handleRequest);
+app.use('/fixed', fixedRoutes);
+app.use('/moving', movingRoutes);
+
 
 app.listen(3001, function () {
   console.log('Example app listening on port 3001!');
