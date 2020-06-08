@@ -17,7 +17,7 @@ exports.handleStatics = (req, res) => {
 };
 
 exports.handleResponses = (req, res) => {
-    const joined = JSON.stringify(req.body + '---' req.params.pag);
+    const joined = JSON.stringify(req.body + '---' + req.params.pag);
     fs.writeFile("./responses.txt", JSON.stringify(joined), function(err) {
         if(err) {
             return console.log(err);
