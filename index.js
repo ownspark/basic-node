@@ -22,7 +22,7 @@ let handleRequest = (req, res) => {
         res.end();
     });
 };
-  
+app.get('/', handleRequest)
 app.use('/fixed', fixedRoutes);
 app.use('/moving', movingRoutes);
 
